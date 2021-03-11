@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  const blogs = await Blog.find().sort('title');
+  const blogs = await Blog.find();
   res.send(blogs);
 });
 
@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
 
   let blog = new Blog({ 
     title: req.body.title,
-    description: req.body.description,
+    body: req.body.body,
   });
   blog = await blog.save();
   
@@ -30,7 +30,7 @@ router.put('/:id', async (req, res) => {
   const blog = await Blog.findByIdAndUpdate(req.params.id,
     { 
       title: req.body.title,
-      description: req.body.description,
+      body: req.body.body,
     }, 
     { new: true });
 

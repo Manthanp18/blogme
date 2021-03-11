@@ -8,7 +8,7 @@ const Blog = mongoose.model('Blog', new mongoose.Schema({
         minlength: 5,
         maxlength: 50
     },
-    description: {
+    body: {
         type: String,
         required: true,
         minlength: 5,
@@ -18,7 +18,7 @@ const Blog = mongoose.model('Blog', new mongoose.Schema({
 function validateBlog(blog){
     const schema = {
         title: Joi.string().min(5).max(500).required(),
-        description: Joi.string().min(5).max(2000).required(),
+        body: Joi.string().min(5).max(2000).required(),
     };
     return Joi.validate(blog, schema);
 }
