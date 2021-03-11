@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 const express = require('express');
+const blogs = require('./routes/blogs');
 const app = express();
 
 app.use(express.json());
+app.use('/api/blogs', blogs);
+
 
 mongoose.connect('mongodb://localhost/blogme')
   .then(() => console.log('Connected to MongoDB...'))
