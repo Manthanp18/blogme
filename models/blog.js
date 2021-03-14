@@ -8,6 +8,7 @@ const Blog = mongoose.model('Blog', new mongoose.Schema({
         minlength: 5,
         maxlength: 50
     },
+    date:  {type:Date, default: Date.now},
     body: {
         type: String,
         required: true,
