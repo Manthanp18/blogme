@@ -4,11 +4,11 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  const blogs = await Blog.find();
-  res.send(blogs);
+  const blog = await Blog.find();
+  res.send(blog);
 });
 
-router.post('/', async (req, res) => {
+router.post('/add', async (req, res) => {
   const { error } = validate(req.body);
   console.log(error); 
   if (error) return res.status(400).send(error.details[0].message);
@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
 });
 
 
-router.put('/:id', async (req, res) => {
+router.put('/edit/:id', async (req, res) => {
   const { error } = validate(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -39,7 +39,7 @@ router.put('/:id', async (req, res) => {
   res.send(blog);
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/delete/:id', async (req, res) => {
   const blog = await Blog.findByIdAndRemove(req.params.id);
 
   if (!blog) return res.status(404).send('The blog with the given ID was not found.');

@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 const express = require('express');
-const blogs = require('./routes/blogs');
+const blog = require('./routes/blogs');
+var cors = require('cors')
 
 const app = express();
-
+app.use(cors()) 
 app.use(express.json());
-app.use('/api/blogs', blogs);
+app.use('/api/blog', blog);
 
 
 app.get('/', async (req, res) => {
